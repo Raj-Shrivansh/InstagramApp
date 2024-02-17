@@ -1,0 +1,22 @@
+<%= simple_form_for(@pic) do |form|%>
+<div class="mb-3">
+    <%= form.label :"Title :",class:"form-label"%>
+    <%= form.text_field :title,placeholder:"Enter Title",class:"form-control",required:true%>
+    <% if @pic.errors.any? %>
+    <% @pic.errors.full_messages_for(:title).each do |err| %>
+        <p style="font-size:1rem;color:red"><%= err%></p>
+    <% end %>
+    <% end %>
+</div>
+<div class="mb-3">
+    <%= form.label :"Description :",class:"form-label"%>
+    <%= form.text_area :disc,placeholder:"Enter Discription",class:"form-control",required:true,rows: 10,cols: 10%>
+    <% if @pic.errors.any? %>
+    <% @pic.errors.full_messages_for(:disc).each do |err| %>
+        <p style="font-size:1rem;color:red"><%= err%></p>
+    <% end %>
+    <% end %>
+</div>
+<%= link_to 'Back',root_path,class:"btn btn-warning"%>
+<%= form.submit "Upload Pic",class:"btn btn-success float-end"%>
+<% end %>

@@ -1,0 +1,6 @@
+<h1>Hello</h1>
+<ul>
+    <% @pics.each do |pic| %>
+    <li>Title:<%= link_to "#{pic.title}", pic_path(pic)%></li>
+    <% end %>
+</ul>

@@ -17,6 +17,13 @@
     <% end %>
     <% end %>
 </div>
+<div class="mb-3">
+  <%= form.label :"Image :",class:"form-label"%>
+  <%= form.file_field :main_image,class:"form-control",id:"formFile"%>
+  <% if @pic.main_image.present?%>
+   Current image:  <%= image_tag @pic.main_image,class:"preview"%>
+<% end %>
+</div>
 <%= link_to 'Back',root_path,class:"btn btn-warning"%>
 <%= form.submit "Upload Pic",class:"btn btn-success float-end"%>
 <% end %>

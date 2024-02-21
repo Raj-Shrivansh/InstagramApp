@@ -1,6 +1,9 @@
-<h1> <%= @pic.title %></h1>
-<%= link_to 'Delete', pic_path, method: :delete, data: { confirm: "are you sure" }%>
-<h1><%= @pic.disc %></h1>
-<h1><%= @pic.user.email %></h1>
-<%= link_to 'edit',edit_pic_path(@pic)%>
-<br>
+<h1 class="text-center"> <%= @pic.title %></h1>
+<p><%= @pic.disc %></p>
+<%= button_to "Delete Project", custom_delete_pic_path(@pic), method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-outline-danger "%>
+<%= link_to 'edit',edit_pic_path(@pic),class:"btn btn-outline-info"%>
+<%= link_to 'Back',root_path,class:"btn btn-outline-success"%> <br>
+<% if @pic.main_image.present? %>
+<%= image_tag @pic.main_image %>
+<% end  %>
+<%= button_to 'like',likes_path,params: { like: {pic_id: pic.id}}  %>

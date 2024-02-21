@@ -33,7 +33,7 @@
         <%= f.label :"Password_confirmation :"%>
         <%= f.password_field :current_password,required:true,class:"form-control",input_html: { autocomplete: "current-password" } %>
         <% if resource.errors.any? %>
-        <% resource.errors.full_messages_for(:password_confirmation).each do |message| %>
+        <% resource.errors.full_messages_for(:current_password).each do |message| %>
             <p><%= message %></p>
             <% end%>
           <% end %>

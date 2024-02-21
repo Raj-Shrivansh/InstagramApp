@@ -1,6 +1,36 @@
-<h1>Hello</h1>
-<ul>
-    <% @pics.each do |pic| %>
-    <li>Title:<%= link_to "#{pic.title}", pic_path(pic)%></li>
+<% @pics.each do |pic| %>
+<div class="card mb-4 mx-auto">
+  <div class="username">
+    <i class="fa-brands fa-instagram" style="color: #d93041;font-size:2.5rem;"></i>
+    <p style="font-size:2rem" class="pt-2"> <%= pic.user.email.split('@').first %></p>
+  </div>
+  
+  <%= image_tag pic.main_image,class:"postImage"%>
+  <div class="status">  
+    <div class="like">
+      <% if user_signed_in? %>
+      <% like = current_user.likes.find_by(pic: pic)%>
+      <% if like.nil? %>
+        <%= button_to likes_path,params: { like: {pic_id: pic.id}} do %>
+        <i class="fa-solid fa-thumbs-up" style="font-size:2rem"> &nbsp;<%= pic.likes.count %></i>
+        <% end %>
+      <% else %>
+        <%= button_to like_path(like),method: :delete do %>
+        <i class="fa-solid fa-thumbs-down" style="font-size:2rem"> &nbsp;<%= pic.likes.count %></i>
+        <% end %>
+      <% end %>
+      <% end %>
+    </div><br>
+    <div><%= pic.disc%></div>
+  </div>
+  <div class="commentInput">
+    <% if user_signed_in? %>
+    <% if current_user.id == pic.user_id %>
+      <%= link_to 'edit',edit_pic_path(pic),class:"btn btn-outline-info float-left"%>
+      <%= link_to "Delete Project", custom_delete_pic_path(pic), method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-outline-danger"%>
     <% end %>
-</ul>
+    <% end %>
+  </div>
+  
+</div>
+ <% end %>

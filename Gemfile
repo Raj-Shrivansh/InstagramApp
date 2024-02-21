@@ -7,7 +7,7 @@ gem "rails", "~> 7.1.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
-
+gem 'masonry-rails', '~> 0.2.4'
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 
@@ -40,7 +40,7 @@ gem 'paperclip', '~> 4.2'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
-
+gem 'acts_as_votable', '~> 0.14.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 

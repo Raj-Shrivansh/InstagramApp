@@ -5,7 +5,7 @@
         <%= f.email_field :email,required:true,class:"form-control" %>
         <% if resource.errors.any? %>
         <% resource.errors.full_messages_for(:email).each do |message| %>
-            <p><%= message %></p>
+            <p style="color:red;font-size:1rem"><%= message %></p>
             <% end%>
           <% end %>
     </div>
@@ -14,7 +14,7 @@
         <%= f.password_field :password,required:true,class:"form-control" %>
         <% if resource.errors.any? %>
         <% resource.errors.full_messages_for(:password).each do |message| %>
-            <p><%= message %></p>
+            <p style="color:red;font-size:1rem"><%= message %></p>
             <% end%>
           <% end %>
     </div>
@@ -23,7 +23,7 @@
         <%= f.password_field :password_confirmation,required:true,class:"form-control" %>
         <% if resource.errors.any? %>
         <% resource.errors.full_messages_for(:password_confirmation).each do |message| %>
-            <p><%= message %></p>
+            <p style="color:red;font-size:1rem"><%= message %></p>
             <% end%>
           <% end %>
     </div>

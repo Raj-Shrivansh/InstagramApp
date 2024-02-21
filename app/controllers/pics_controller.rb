@@ -1,4 +1,6 @@
 class PicsController < ApplicationController
+    before_action :find_pic, only: [:show,:edit,:update]
+    before_action :authenticate_user!, except: [:index, :show]
     def index
         @pics=Pic.all.order("created_at DESC")
     end
@@ -16,8 +18,6 @@ class PicsController < ApplicationController
         end
     end
     def show
-        @pic=Pic.find(params[:id])
-
         rescue ActiveRecord::RecordNotFound
             flash[:error]="With given Id no Record Found"
             redirect_to pics_path
@@ -29,7 +29,6 @@ class PicsController < ApplicationController
             redirect_to pics_path
         end
     def update
-        @pic=Pic.find(params[:id])
         if @pic.update(pic_params)
             flash[:notice]="Pic Updated Successfully"
             redirect_to pic_path(@pic)
@@ -38,15 +37,17 @@ class PicsController < ApplicationController
             render :edit, status: :unprocessable_entity
         end
     end
-    def destroy
-        @pic=Pic.find(params[:id])
-        @pic.delete
-        rescue ActiveRecord::RecordNotFound
-            flash[:error]="With given Id no Record Found"
-            redirect_to pics_path
-        end
+    def custom_delete
+        @pic = Pic.find(params[:id])
+        @pic.destroy
+        flash[:notice]="Post was successfully deleted."
+        redirect_to pics_path
+    end 
     private
     def pic_params
-        params.require(:pic).permit(:title,:disc)
+        params.require(:pic).permit(:title,:disc,:main_image)
+    end
+    def find_pic
+        @pic=Pic.find(params[:id])
     end
 end
